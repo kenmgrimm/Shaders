@@ -1,5 +1,6 @@
 /*
 * Perlin noise
+* https://www.raywenderlich.com/2323-opengl-es-pixel-shaders-tutorial
 */
 #ifdef GL_ES
 precision mediump float;

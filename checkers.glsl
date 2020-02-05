@@ -1,0 +1,21 @@
+#ifdef GL_ES
+precision mediump float;
+#endif
+
+uniform vec2 u_resolution;
+uniform float u_time;
+
+void main(){
+  vec2 st=(gl_FragCoord.xy/u_resolution) * 2. - 1.;
+
+  vec3 color=vec3(0.);
+
+  // y * x checkers based on :
+  // - * + => -
+  // + * + => +
+  // + * - => -
+  // - * - => +
+  color += step(0., st.y * st.x);
+
+  gl_FragColor=vec4(color, 1);
+}
