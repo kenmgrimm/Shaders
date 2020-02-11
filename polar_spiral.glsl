@@ -9,19 +9,6 @@ precision mediump float;
 uniform vec2 u_resolution;
 uniform float u_time;
 
-// http://iquilezles.org/www/articles/palettes/palettes.htm
-// https://www.shadertoy.com/view/ll2GD3
-vec3 pal(in float t,in vec3 a,in vec3 b,in vec3 c,in vec3 d) {
-  return a+b*cos(TWO_PI*(c*t+d));
-}
-
-vec3 watercolor_pal(float norm) {
-  return pal(norm,vec3(.8,.5,.4),vec3(.2,.4,.2),vec3(2.,1.,1.),vec3(0.,.25,.25));
-}
-vec3 translucent_pal(float norm) {
-  return pal(norm,vec3(.5,.5,.5),vec3(.5,.5,.5),vec3(2.,1.,0.),vec3(.5,.20,.25));
-}
-
 // Returns atan range 0..TWO_PI
 float atan_pos(float y,float x){
   return atan(y,x)+PI;
@@ -35,7 +22,9 @@ float atan_norm(float y,float x){
 void main(){
   // uv centered and normalized from -.5 to .5
   vec2 uv=(gl_FragCoord.xy-.5*u_resolution.xy)/u_resolution.y;
-  float time = -u_time / 4.;
+
+  float time = 0.;
+  // float time = -u_time / 4.;
 
   // scale
   uv*=1.;
