@@ -2,7 +2,10 @@
 precision mediump float;
 #endif
 
+#define TWO_PI 6.282
 #define PI 3.14159
+
+#define ANIMATE true
 
 uniform vec2 u_resolution;
 uniform float u_time;
@@ -13,27 +16,26 @@ void main(){
   float minRes=min(u_resolution.x,u_resolution.y);
   float radius=.1*u_resolution.y/u_resolution.y;
 
-  vec2 normalized = (uv-center)/minRes;
+  uv = (uv-center)/minRes;
+
+  // uv *= .01;
+
+  float time = ANIMATE ? u_time : 0.;
+
+  float glow = .2 * (sin(5.*u_time)+PI)/TWO_PI;
   
-  if(abs(normalized.y)>8.*radius){
+  if(abs(uv.y)>8.*radius){
     discard;
   }
   
   vec3 color=vec3(0.);
   
-  // stripes
-  // color+=smoothstep(1.1,1.4,mod(u_time+(atan(normalized.y,normalized.x)+PI)/2.*PI*3.,2.));
-  // color+=smoothstep(1.1,1.4,mod(-u_time+(-atan(normalized.y,normalized.x)+PI)/2.*PI*3.,2.));
-  float atanNormal = atan(normalized.y, normalized.x);
-  if(atanNormal < 0.) {
-    atanNormal += 2.*PI;
-  }
-  atanNormal/=(2.*PI);
-  color+=step(1.1,mod(u_time+atanNormal,1.4));
-  color+=step(1.1,mod(-u_time+(-atan(normalized.y,normalized.x)+PI)/2.*PI*3.,2.));
+  float atanNormal = atan(uv.y, uv.x)/TWO_PI;
+  // gradient rays
+  color+=smoothstep(0.,.2,mod(.2*time+atanNormal,.2));
   
-  // circle
-  color+=1.-smoothstep(radius, radius+.08, abs(length(normalized)));
+  // glowing circle
+  color+=1.-smoothstep(radius, radius+glow, abs(length(uv)));
   
   gl_FragColor=vec4(color,1);
 }

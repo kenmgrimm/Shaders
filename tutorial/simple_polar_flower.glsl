@@ -12,13 +12,12 @@ void main(){
   // uv centered and normalized from -.5 to .5
   vec2 uv = (gl_FragCoord.xy-.5*u_resolution.xy) / u_resolution.y;
 
-  vec2 st = vec2(atan(uv.x, uv.y), length(uv));
+  float angle = atan(uv.x,uv.y);
+  angle = angle/6.2831+.5;
 
-  uv = vec2(st.x/6.2831+.5, st.y);
-
-  float x = uv.x*PETALS;
+  float x = angle*PETALS;
   float m = min(fract(x), fract(1.-x));
-  float c = smoothstep(0., .1, m*.3+.2-uv.y);
+  float c = smoothstep(0., .1, m*.3+.2-length(uv));
   
   gl_FragColor=vec4(c);
 }

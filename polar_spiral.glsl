@@ -4,7 +4,9 @@ precision mediump float;
 
 #define PI 3.14159
 #define TWO_PI 6.28319
+
 #define SPIRAL_LEN 500.
+#define ANIMATE true
 
 uniform vec2 u_resolution;
 uniform float u_time;
@@ -23,8 +25,7 @@ void main(){
   // uv centered and normalized from -.5 to .5
   vec2 uv=(gl_FragCoord.xy-.5*u_resolution.xy)/u_resolution.y;
 
-  float time = 0.;
-  // float time = -u_time / 4.;
+  float time = ANIMATE ? -u_time / 4. : 0.;
 
   // scale
   uv*=1.;
