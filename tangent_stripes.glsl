@@ -6,7 +6,7 @@ precision mediump float;
 #define PI 3.14159
 
 #define ANIMATE true
-#define SPEED .2
+#define SPEED .5
 
 uniform vec2 u_resolution;
 uniform float u_time;
@@ -21,7 +21,13 @@ void main(){
 
   // uv *= .8;
 
-  float time = ANIMATE ? u_time : 0.;
+  float time = ANIMATE ? SPEED*u_time : 0.;
+  float fanTime = pow(mod(time, 2.), 3.);
+  float animFrame=mod(time,2.)/2.;
+  float amp = -1. + 3./(pow(animFrame, -.5)+2.2);
+  float offset = .0+log(animFrame);
+ // float f = 10. - pow(animFrame - 2., 2.);
+  // float fanTime = offset + amp*sin(animFrame);
 
   float glow = .2 * (sin(5.*u_time)+PI)/TWO_PI;
   
@@ -33,7 +39,11 @@ void main(){
   
   float atanNormal = (PI + atan(uv.y, uv.x))/TWO_PI;
   // gradient rays
-  color+=smoothstep(.0,.2,mod(fract(SPEED*time+atanNormal),.14));
+  color+=smoothstep(0.,.2,mod(sin(PI*fract(fanTime+atanNormal)/PI),.18));
+
+  // straight blades
+  // float bladeWidth = .75;
+  // color+=step((1.-bladeWidth)*.2,mod(fract(atanNormal+time),.1));
   
   // glowing circle
   color+=1.-smoothstep(radius, radius+glow, abs(length(uv)));

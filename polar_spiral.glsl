@@ -25,10 +25,10 @@ void main(){
   // uv centered and normalized from -.5...5
   vec2 uv=(gl_FragCoord.xy-.5*u_resolution.xy)/u_resolution.y;
 
-  float time = ANIMATE ? -u_time / 4. : 0.;
+  float time = ANIMATE ? -u_time / 2. : 0.;
 
   // scale
-  uv*=1.;
+  // uv*=1;
 
   vec3 col = vec3(0.);
 
