@@ -17,7 +17,7 @@ void main(){
 
   float x = angle*PETALS;
   float m = min(fract(x), fract(1.-x));
-  float c = smoothstep(0., .1, m*.3+.2-length(uv));
+  float c = smoothstep(0., .02, m*.3+.2-length(uv));
   
   gl_FragColor=vec4(c);
 }
