@@ -22,7 +22,7 @@ float atan_norm(float y,float x){
 }
 
 void main(){
-  // uv centered and normalized from -.5 to .5
+  // uv centered and normalized from -.5...5
   vec2 uv=(gl_FragCoord.xy-.5*u_resolution.xy)/u_resolution.y;
 
   float time = ANIMATE ? -u_time / 4. : 0.;

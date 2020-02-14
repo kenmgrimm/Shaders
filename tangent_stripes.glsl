@@ -6,6 +6,7 @@ precision mediump float;
 #define PI 3.14159
 
 #define ANIMATE true
+#define SPEED .2
 
 uniform vec2 u_resolution;
 uniform float u_time;
@@ -18,7 +19,7 @@ void main(){
 
   uv = (uv-center)/minRes;
 
-  // uv *= .01;
+  // uv *= .8;
 
   float time = ANIMATE ? u_time : 0.;
 
@@ -30,9 +31,9 @@ void main(){
   
   vec3 color=vec3(0.);
   
-  float atanNormal = atan(uv.y, uv.x)/TWO_PI;
+  float atanNormal = (PI + atan(uv.y, uv.x))/TWO_PI;
   // gradient rays
-  color+=smoothstep(0.,.2,mod(.2*time+atanNormal,.2));
+  color+=smoothstep(.0,.2,mod(fract(SPEED*time+atanNormal),.14));
   
   // glowing circle
   color+=1.-smoothstep(radius, radius+glow, abs(length(uv)));
