@@ -22,12 +22,7 @@ void main(){
   // uv *= .8;
 
   float time = ANIMATE ? SPEED*u_time : 0.;
-  float fanTime = pow(mod(time, 2.), 3.);
-  float animFrame=mod(time,2.)/2.;
-  float amp = -1. + 3./(pow(animFrame, -.5)+2.2);
-  float offset = .0+log(animFrame);
- // float f = 10. - pow(animFrame - 2., 2.);
-  // float fanTime = offset + amp*sin(animFrame);
+  float fanTime = 2.*(time+sin(time));
 
   float glow = .2 * (sin(5.*u_time)+PI)/TWO_PI;
   
