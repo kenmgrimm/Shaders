@@ -10,7 +10,7 @@ uniform vec2 u_resolution;
 uniform float u_time;
 
 float randomNoise(vec2 p){
-  return fract(6791.*sin(47.*p.x+p.y*9973.));
+  return fract(u_time+6791.*sin(47.*p.x+p.y*9973.));
 }
 
 void main(){
