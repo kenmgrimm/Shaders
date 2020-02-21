@@ -1,6 +1,23 @@
-Look up actual from Inigo on one of the videos, maybe on the heart?
-abs - symmetry
-sin - smooth or repetitive
-cos - gradient
-clamp - 
-mod - to group or repeat
+https://thebookofshaders.com/
+
+Shaping Functions
+https://thebookofshaders.com/05/
+
+Distance Fields
+https://thebookofshaders.com/07/
+
+Generic polygon distance field
+https://thndl.com/square-shaped-shaders.html
+
+Flong shapes
+http://www.flong.com/texts/code/shapers_poly/
+http://www.flong.com/texts/code/shapers_exp/
+http://www.flong.com/texts/code/shapers_circ/
+http://www.flong.com/texts/code/shapers_bez/
+
+Quilez shaping functions
+http://www.iquilezles.org/www/articles/functions/functions.htm
+
+
+dot product
+Now that we have a better understanding of randomness, it's time to apply it in two dimensions, to both the x and y axis. For that we need a way to transform a two dimensional vector into a one dimensional floating point value. There are different ways to do this, but the dot() function is particulary helpful in this case. It returns a single float value between 0.0 and 1.0 depending on the alignment of two vectors.

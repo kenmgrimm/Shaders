@@ -1,3 +1,7 @@
+/*
+* Smooth noise - half-neighbor average interpolated noise on sphere
+* https://www.raywenderlich.com/2323-opengl-es-pixel-shaders-tutorial
+*/
 #ifdef GL_ES
 precision mediump float;
 #endif
